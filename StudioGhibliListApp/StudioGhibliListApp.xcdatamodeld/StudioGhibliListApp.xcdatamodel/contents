@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C54" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Films" representedClassName="Films" syncable="YES">
+        <attribute name="director" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="film_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="producer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="release_date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rt_score" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Locations" representedClassName="Locations" syncable="YES">
+        <attribute name="climate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="surface_water" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="terrain" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="People" representedClassName="People" syncable="YES">
+        <attribute name="age" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Species" representedClassName="Species" syncable="YES">
+        <attribute name="classification" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eye_color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hair_colors" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Vehicles" representedClassName="Vehicles" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="length" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vehicle_class" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vehicle_description" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Films" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="People" positionX="-45" positionY="54" width="128" height="105"/>
+        <element name="Locations" positionX="-27" positionY="72" width="128" height="120"/>
+        <element name="Species" positionX="-9" positionY="99" width="128" height="120"/>
+        <element name="Vehicles" positionX="9" positionY="126" width="128" height="120"/>
+    </elements>
+</model>
