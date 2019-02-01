@@ -35,7 +35,7 @@ class SGViewModel {
         return sgBaseURLString + option.rawValue
     }
     
-    private func decode<T: Decodable>(json: Data, as clazz: T) -> T? {
+    private func decode<T: Decodable>(json: Data, as clazz: T.Type) -> T? {
         do {
             let decoder = JSONDecoder()
             let films = try decoder.decode(T.self, from: json)
@@ -64,8 +64,14 @@ class SGViewModel {
                 return
             }
             
-            if let results = self.decode(json: safeData, as: [Films].self) {
-                
+            switch option {
+            case .films:
+                if let results = self.decode(json: safeData, as: [Films].self) {
+                    print(results)
+                }
+                break
+            default:
+                break
             }
         }
     }

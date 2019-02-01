@@ -10,6 +10,10 @@
 import Foundation
 import CoreData
 
+extension CodingUserInfoKey {
+    static let context = CodingUserInfoKey(rawValue: "context")
+}
+
 @objc(Films)
 public class Films: NSManagedObject, Decodable {
     enum CodingKeys: String, CodingKey {
@@ -23,11 +27,26 @@ public class Films: NSManagedObject, Decodable {
     }
     
     required public init(from decoder: Decoder) throws {
-        guard let context = CodingUserInfoKey(rawValue: "context"),
-            let managedObjectContext = decoder.userInfo[context] as? NSManagedObjectContext,
-            let entity = NSEntityDescription.entity(forEntityName: "Films", in: managedObjectContext) else {
+//        guard let managedObjectContext = CodingUserInfoKey(rawValue: "managedObjectContext") else {
+//            fatalError("Failed to retrieve managed object context")
+//        }
+        
+        guard let contextUserInfoKey = CodingUserInfoKey(rawValue: "managedObjectContext") else {
+            fatalError("Failed to get contextUserInfoKey!")
+        }
+        guard let managedObjectContext = decoder.userInfo[contextUserInfoKey] as? NSManagedObjectContext else {
+            fatalError("Failed to get managedObjectContext!")
+        }
+        guard let entity = NSEntityDescription.entity(forEntityName: "Films", in: managedObjectContext) else {
                 fatalError("Failed to decode Films!")
         }
+//            let managedObjectContext = decoder.userInfo[codingUserInfoKeyManagedObjectContext] as? NSManagedObjectContext,
+//            let entity = NSEntityDescription.entity(forEntityName: "User", in: managedObjectContext) else {
+//                fatalError("Failed to decode User")
+//        }
+        
+//        self.init(entity: entity, in: context)
+        
         super.init(entity: entity, insertInto: nil)
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
