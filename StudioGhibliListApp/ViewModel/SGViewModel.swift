@@ -6,7 +6,7 @@
 //  Copyright © 2019 Frakcool. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class SGViewModel {
     private let sgBaseURLString = "https://ghibliapi.herokuapp.com"
@@ -38,6 +38,8 @@ class SGViewModel {
     private func decode<T: Decodable>(json: Data, as clazz: T.Type) -> T? {
         do {
             let decoder = JSONDecoder()
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            decoder.userInfo[CodingUserInfoKey.context!] = context
             let films = try decoder.decode(T.self, from: json)
             return films
         } catch {
@@ -66,8 +68,10 @@ class SGViewModel {
             
             switch option {
             case .films:
-                if let results = self.decode(json: safeData, as: [Films].self) {
-                    print(results)
+                DispatchQueue.main.async { [unowned self] in
+                    if let results = self.decode(json: safeData, as: [Films].self) {
+                        print(results)
+                    }
                 }
                 break
             default:

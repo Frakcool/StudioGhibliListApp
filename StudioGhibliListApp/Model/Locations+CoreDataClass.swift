@@ -21,11 +21,12 @@ public class Locations: NSManagedObject, Decodable {
     }
     
     required public init(from decoder: Decoder) throws {
-        guard let context = CodingUserInfoKey(rawValue: "context"),
-            let managedObjectContext = decoder.userInfo[context] as? NSManagedObjectContext,
+        guard let contextUserInfoKey = CodingUserInfoKey.context,
+            let managedObjectContext = decoder.userInfo[contextUserInfoKey] as? NSManagedObjectContext,
             let entity = NSEntityDescription.entity(forEntityName: "Locations", in: managedObjectContext) else {
                 fatalError("Failed to decode Locations!")
         }
+        
         super.init(entity: entity, insertInto: nil)
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
