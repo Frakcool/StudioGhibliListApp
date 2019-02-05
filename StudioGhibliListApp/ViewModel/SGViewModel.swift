@@ -14,6 +14,7 @@ class SGViewModel {
     
     enum Options: String {
         case films = "/films"
+        case people = "/people"
         case locations = "/locations"
         case species = "/species"
         case vehicles = "/vehicles"
@@ -38,10 +39,12 @@ class SGViewModel {
     private func decode<T: Decodable>(json: Data, as clazz: T.Type) -> T? {
         do {
             let decoder = JSONDecoder()
+            
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
             decoder.userInfo[CodingUserInfoKey.context!] = context
-            let films = try decoder.decode(T.self, from: json)
-            return films
+            
+            let data = try decoder.decode(T.self, from: json)
+            return data
         } catch {
             print("An error occurred while parsing JSON")
         }
@@ -74,7 +77,33 @@ class SGViewModel {
                     }
                 }
                 break
-            default:
+            case .people:
+                DispatchQueue.main.async { [unowned self] in
+                    if let results = self.decode(json: safeData, as: [People].self) {
+                        print(results)
+                    }
+                }
+                break
+            case .locations:
+                DispatchQueue.main.async { [unowned self] in
+                    if let results = self.decode(json: safeData, as: [Locations].self) {
+                        print(results)
+                    }
+                }
+                break
+            case .species:
+                DispatchQueue.main.async { [unowned self] in
+                    if let results = self.decode(json: safeData, as: [Species].self) {
+                        print(results)
+                    }
+                }
+                break
+            default: //Vehicles
+                DispatchQueue.main.async { [unowned self] in
+                    if let results = self.decode(json: safeData, as: [Vehicles].self) {
+                        print(results)
+                    }
+                }
                 break
             }
         }

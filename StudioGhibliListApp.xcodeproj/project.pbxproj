@@ -26,6 +26,8 @@
 		C535FFC221F68952002B4C3A /* StudioGhibliListAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535FFC121F68952002B4C3A /* StudioGhibliListAppTests.swift */; };
 		C535FFD321F69379002B4C3A /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535FFD221F69379002B4C3A /* NetworkController.swift */; };
 		C535FFD521F7879A002B4C3A /* SGViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535FFD421F7879A002B4C3A /* SGViewModel.swift */; };
+		C572774922094AAA00EEA9C5 /* SGTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C572774822094AAA00EEA9C5 /* SGTableViewHeader.xib */; };
+		C572774B220A0AFA00EEA9C5 /* SGTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572774A220A0AFA00EEA9C5 /* SGTableViewHeader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		C535FFD421F7879A002B4C3A /* SGViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SGViewModel.swift; sourceTree = "<group>"; };
 		C535FFFE21F7A029002B4C3A /* Species+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Species+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C535FFFF21F7A029002B4C3A /* Species+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Species+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		C572774822094AAA00EEA9C5 /* SGTableViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SGTableViewHeader.xib; sourceTree = "<group>"; };
+		C572774A220A0AFA00EEA9C5 /* SGTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SGTableViewHeader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,7 @@
 		C535FFCD21F6930F002B4C3A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C572774722094A8600EEA9C5 /* TableHeader */,
 				C535FFAB21F68950002B4C3A /* ViewController.swift */,
 			);
 			path = View;
@@ -165,6 +170,15 @@
 				C535FFD221F69379002B4C3A /* NetworkController.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		C572774722094A8600EEA9C5 /* TableHeader */ = {
+			isa = PBXGroup;
+			children = (
+				C572774822094AAA00EEA9C5 /* SGTableViewHeader.xib */,
+				C572774A220A0AFA00EEA9C5 /* SGTableViewHeader.swift */,
+			);
+			path = TableHeader;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,6 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C572774922094AAA00EEA9C5 /* SGTableViewHeader.xib in Resources */,
 				C535FFB721F68952002B4C3A /* LaunchScreen.storyboard in Resources */,
 				C535FFB421F68952002B4C3A /* Assets.xcassets in Resources */,
 				C535FFAF21F68950002B4C3A /* Main.storyboard in Resources */,
@@ -276,6 +291,7 @@
 				C535000A21F7A029002B4C3A /* Films+CoreDataClass.swift in Sources */,
 				C535000F21F7A029002B4C3A /* Vehicles+CoreDataProperties.swift in Sources */,
 				C535000E21F7A029002B4C3A /* Vehicles+CoreDataClass.swift in Sources */,
+				C572774B220A0AFA00EEA9C5 /* SGTableViewHeader.swift in Sources */,
 				C535000921F7A029002B4C3A /* Species+CoreDataProperties.swift in Sources */,
 				C535FFAC21F68950002B4C3A /* ViewController.swift in Sources */,
 				C535001121F7A029002B4C3A /* People+CoreDataProperties.swift in Sources */,
