@@ -18,13 +18,17 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         tableView.register(UINib(nibName: "SGTableViewHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "header")
         
-        vm.getData(from: .films)
+        vm.optionChanged(to: SGViewModel.Options.vehicles)
+        
+        vm.getData(as: Vehicles.self) {
+            self.tableView.reloadData()
+        }
     }
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return vm.getModelSize()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -32,7 +36,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.textLabel?.text = "lalala"
+        cell.textLabel?.text = vm.getTableString(at: indexPath.row)
         return cell
     }
     

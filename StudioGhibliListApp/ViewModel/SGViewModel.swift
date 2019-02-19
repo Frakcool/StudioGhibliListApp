@@ -10,7 +10,12 @@ import UIKit
 
 class SGViewModel {
     private let sgBaseURLString = "https://ghibliapi.herokuapp.com"
-    private var films: [Films]?
+    
+    private var urlString = ""
+    private var fields = [String:String]()
+    private var currentOption = Options.films
+    
+    private var model: [Decodable]?
     
     enum Options: String {
         case films = "/films"
@@ -26,7 +31,17 @@ class SGViewModel {
         case .films:
             fields = "id,title,description,director,producer,release_date,rt_score"
             break
-        default:
+        case .people:
+            fields = "id,name,gender,age"
+            break
+        case .locations:
+            fields = "id,name,climate,terrain,surface_water"
+            break
+        case .species:
+            fields = "id,name,classification,eye_color,hair_colors"
+            break
+        default: //Vehicles
+            fields = "id,name,description,vehicle_class,length"
             break
         }
         return fields
@@ -52,10 +67,13 @@ class SGViewModel {
         return nil
     }
     
-    func getData(from option: Options) {
-        let urlString = generateURL(option)
-        let fields = ["fields" : getFieldsToReturn(option)]
-        
+    func optionChanged(to option: Options) {
+        urlString = generateURL(option)
+        fields = ["fields" : getFieldsToReturn(option)]
+        currentOption = option
+    }
+    
+    func getData<T: Decodable>(as clazz: T.Type, _ completion: @escaping () -> ()) {
         guard let url = URL(string: urlString) else {
             return
         }
@@ -69,43 +87,31 @@ class SGViewModel {
                 return
             }
             
-            switch option {
-            case .films:
-                DispatchQueue.main.async { [unowned self] in
-                    if let results = self.decode(json: safeData, as: [Films].self) {
-                        print(results)
-                    }
+            DispatchQueue.main.async {
+                if let decodedData = self.decode(json: safeData, as: [T].self) {
+                    self.model = decodedData
+                    completion()
                 }
-                break
-            case .people:
-                DispatchQueue.main.async { [unowned self] in
-                    if let results = self.decode(json: safeData, as: [People].self) {
-                        print(results)
-                    }
-                }
-                break
-            case .locations:
-                DispatchQueue.main.async { [unowned self] in
-                    if let results = self.decode(json: safeData, as: [Locations].self) {
-                        print(results)
-                    }
-                }
-                break
-            case .species:
-                DispatchQueue.main.async { [unowned self] in
-                    if let results = self.decode(json: safeData, as: [Species].self) {
-                        print(results)
-                    }
-                }
-                break
-            default: //Vehicles
-                DispatchQueue.main.async { [unowned self] in
-                    if let results = self.decode(json: safeData, as: [Vehicles].self) {
-                        print(results)
-                    }
-                }
-                break
             }
         }
+    }
+    
+    func getModelSize() -> Int {
+        return model?.count ?? 0
+    }
+    
+    func getTableString(at index: Int) -> String {
+        if let films = model as? [Films] {
+            return films[index].title ?? "Unknown movie title"
+        } else if let people = model as? [People] {
+            return people[index].name ?? "Unknown person"
+        } else if let locations = model as? [Locations] {
+            return locations[index].name ?? "Unknown location"
+        } else if let species = model as? [Species] {
+            return species[index].name ?? "Unknown specie"
+        } else if let vehicles = model as? [Vehicles] {
+            return vehicles[index].name ?? "Unknown vehicle"
+        }
+        return "Unknown option"
     }
 }
