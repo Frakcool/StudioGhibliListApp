@@ -16,24 +16,34 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bpv-uZ-H3l">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Bq-QQ-0rS">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <subviews>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="bpv-uZ-H3l">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="51"/>
+                            <segments>
+                                <segment title="Films"/>
+                                <segment title="People"/>
+                                <segment title="Locations"/>
+                                <segment title="Species"/>
+                                <segment title="Vehicles"/>
+                            </segments>
+                        </segmentedControl>
+                    </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <segments>
-                        <segment title="Films"/>
-                        <segment title="People"/>
-                        <segment title="Locations"/>
-                        <segment title="Species"/>
-                        <segment title="Vehicles"/>
-                    </segments>
-                </segmentedControl>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="bpv-uZ-H3l" secondAttribute="trailing" id="Nyt-pJ-boW"/>
+                        <constraint firstAttribute="bottom" secondItem="bpv-uZ-H3l" secondAttribute="bottom" id="VWq-sE-JIY"/>
+                        <constraint firstItem="bpv-uZ-H3l" firstAttribute="top" secondItem="0Bq-QQ-0rS" secondAttribute="top" id="c8l-QW-bT0"/>
+                        <constraint firstItem="bpv-uZ-H3l" firstAttribute="leading" secondItem="0Bq-QQ-0rS" secondAttribute="leading" id="hDq-MR-jOc"/>
+                    </constraints>
+                </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="bpv-uZ-H3l" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="2Tz-nN-Hje"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="bpv-uZ-H3l" secondAttribute="bottom" id="Em6-OT-hJu"/>
-                <constraint firstItem="bpv-uZ-H3l" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ZKn-66-eYd"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bpv-uZ-H3l" secondAttribute="trailing" id="zRm-VD-b7Y"/>
+                <constraint firstItem="0Bq-QQ-0rS" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="CcE-Uf-vCB"/>
+                <constraint firstItem="0Bq-QQ-0rS" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="LGb-Hg-iuE"/>
+                <constraint firstItem="0Bq-QQ-0rS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ifE-dL-rgq"/>
+                <constraint firstItem="0Bq-QQ-0rS" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="sKY-Q0-b0e"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

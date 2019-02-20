@@ -28,6 +28,7 @@
 		C535FFD521F7879A002B4C3A /* SGViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535FFD421F7879A002B4C3A /* SGViewModel.swift */; };
 		C572774922094AAA00EEA9C5 /* SGTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = C572774822094AAA00EEA9C5 /* SGTableViewHeader.xib */; };
 		C572774B220A0AFA00EEA9C5 /* SGTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C572774A220A0AFA00EEA9C5 /* SGTableViewHeader.swift */; };
+		C5751420221CE98C00E42BC7 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C575141F221CE98C00E42BC7 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		C535FFFF21F7A029002B4C3A /* Species+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Species+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C572774822094AAA00EEA9C5 /* SGTableViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SGTableViewHeader.xib; sourceTree = "<group>"; };
 		C572774A220A0AFA00EEA9C5 /* SGTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SGTableViewHeader.swift; sourceTree = "<group>"; };
+		C575141F221CE98C00E42BC7 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			children = (
 				C572774722094A8600EEA9C5 /* TableHeader */,
 				C535FFAB21F68950002B4C3A /* ViewController.swift */,
+				C575141F221CE98C00E42BC7 /* DetailsViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				C535000F21F7A029002B4C3A /* Vehicles+CoreDataProperties.swift in Sources */,
 				C535000E21F7A029002B4C3A /* Vehicles+CoreDataClass.swift in Sources */,
 				C572774B220A0AFA00EEA9C5 /* SGTableViewHeader.swift in Sources */,
+				C5751420221CE98C00E42BC7 /* DetailsViewController.swift in Sources */,
 				C535000921F7A029002B4C3A /* Species+CoreDataProperties.swift in Sources */,
 				C535FFAC21F68950002B4C3A /* ViewController.swift in Sources */,
 				C535001121F7A029002B4C3A /* People+CoreDataProperties.swift in Sources */,
