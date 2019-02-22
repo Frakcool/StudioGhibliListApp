@@ -46,10 +46,28 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? SGTableViewHeader else {
-            return UITableViewCell()
+            return UIView()
         }
-        
+        header.delegate = self
         return header
     }
 }
 
+extension ViewController: OptionsProtocol {
+    func didSelect(_ index: Int) {
+        var option: SGViewModel.Options? = nil
+        switch (index) {
+        case 0:
+            option = .films
+        case 1:
+            option = .people
+        case 2:
+            option = .locations
+        case 3:
+            option = .species
+        default:
+            option = .vehicles
+        }
+        vm.optionChanged(to: option!)
+    }
+}

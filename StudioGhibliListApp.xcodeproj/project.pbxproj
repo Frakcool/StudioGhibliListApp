@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3FBA77CB2220B3B900C481AD /* OptionsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBA77CA2220B3B900C481AD /* OptionsProtocol.swift */; };
 		C535000821F7A029002B4C3A /* Species+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535FFFE21F7A029002B4C3A /* Species+CoreDataClass.swift */; };
 		C535000921F7A029002B4C3A /* Species+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535FFFF21F7A029002B4C3A /* Species+CoreDataProperties.swift */; };
 		C535000A21F7A029002B4C3A /* Films+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535000021F7A029002B4C3A /* Films+CoreDataClass.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3FBA77CA2220B3B900C481AD /* OptionsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsProtocol.swift; sourceTree = "<group>"; };
 		C535000021F7A029002B4C3A /* Films+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Films+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C535000121F7A029002B4C3A /* Films+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Films+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C535000221F7A029002B4C3A /* Locations+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locations+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -88,6 +90,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3FBA77C92220B3A200C481AD /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3FBA77CA2220B3B900C481AD /* OptionsProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		C535FF9D21F68950002B4C3A = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +119,7 @@
 		C535FFA821F68950002B4C3A /* StudioGhibliListApp */ = {
 			isa = PBXGroup;
 			children = (
+				3FBA77C92220B3A200C481AD /* Protocols */,
 				C535FFCF21F6931A002B4C3A /* Services */,
 				C535FFCE21F69315002B4C3A /* Model */,
 				C535FFCD21F6930F002B4C3A /* View */,
@@ -292,6 +303,7 @@
 				C535000821F7A029002B4C3A /* Species+CoreDataClass.swift in Sources */,
 				C535000C21F7A029002B4C3A /* Locations+CoreDataClass.swift in Sources */,
 				C535000A21F7A029002B4C3A /* Films+CoreDataClass.swift in Sources */,
+				3FBA77CB2220B3B900C481AD /* OptionsProtocol.swift in Sources */,
 				C535000F21F7A029002B4C3A /* Vehicles+CoreDataProperties.swift in Sources */,
 				C535000E21F7A029002B4C3A /* Vehicles+CoreDataClass.swift in Sources */,
 				C572774B220A0AFA00EEA9C5 /* SGTableViewHeader.swift in Sources */,

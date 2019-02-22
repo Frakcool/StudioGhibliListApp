@@ -9,6 +9,13 @@
 import UIKit
 
 class SGTableViewHeader: UITableViewHeaderFooterView {
+    
     @IBOutlet weak var optionsControl: UISegmentedControl!
+    
+    weak var delegate: OptionsProtocol!
+    
+    @IBAction func optionsControlAction(_ sender: UISegmentedControl) {
+        self.delegate?.didSelect(sender.selectedSegmentIndex)
+    }
     
 }
