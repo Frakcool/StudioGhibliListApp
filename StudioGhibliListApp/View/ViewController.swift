@@ -10,19 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
-    
-    let vm = SGViewModel()
+    var vm: SGViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
         tableView.register(UINib(nibName: "SGTableViewHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "header")
         
-        vm.optionChanged(to: SGViewModel.Options.films)
+        vm = SGViewModel({
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        })
         
-        vm.getDataList(as: Films.self) {
-            self.tableView.reloadData()
-        }
+        vm.optionChanged(to: SGViewModel.Options.films)
         
         vm.getIndividualData(as: Films.self, withId: "2baf70d1-42bb-4437-b551-e5fed5a87abe") {
             print("DONE")

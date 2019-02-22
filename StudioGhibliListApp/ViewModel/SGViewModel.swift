@@ -13,10 +13,36 @@ class SGViewModel {
     
     private var urlString = ""
     private var fields = [String:String]()
-    private var currentOption = Options.films
+    private var currentOption = Options.films {
+        didSet {
+            switch currentOption {
+            case .films:
+                self.getDataList(as: Films.self) {
+                    self.updateUI?()
+                }
+            case .people:
+                self.getDataList(as: People.self) {
+                    self.updateUI?()
+                }
+            case .locations:
+                self.getDataList(as: Locations.self) {
+                    self.updateUI?()
+                }
+            case .species:
+                self.getDataList(as: Species.self) {
+                    self.updateUI?()
+                }
+            case .vehicles:
+                self.getDataList(as: Vehicles.self) {
+                    self.updateUI?()
+                }
+            }
+        }
+    }
+    private var updateUI: (()->Void)?
     
     private var modelArray: [Decodable]?
-    private var model: Decodable?
+    private var model: Decodable? // this does not seem to be in use
     
     enum Options: String {
         case films = "/films"
@@ -24,6 +50,12 @@ class SGViewModel {
         case locations = "/locations"
         case species = "/species"
         case vehicles = "/vehicles"
+    }
+    
+    init() { }
+    
+    init(_ updateUI: (()->Void)?) {
+        self.updateUI = updateUI
     }
     
     private func getFieldsToReturn(_ option: Options) -> String {
@@ -56,7 +88,7 @@ class SGViewModel {
         do {
             let decoder = JSONDecoder()
             
-            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            let context = CoreDataService.shared.persistentContainer.viewContext
             decoder.userInfo[CodingUserInfoKey.context!] = context
             
             let data = try decoder.decode(T.self, from: json)
@@ -92,12 +124,10 @@ class SGViewModel {
                 return
             }
             
-            DispatchQueue.main.async {
-                if let decodedData = self.decode(json: safeData, as: T.self) {
-                    self.model = decodedData
-                    print(decodedData)
-                    completion()
-                }
+            if let decodedData = self.decode(json: safeData, as: T.self) {
+                self.model = decodedData
+                print(decodedData)
+                completion()
             }
         }
     }
@@ -116,12 +146,11 @@ class SGViewModel {
                 return
             }
             
-            DispatchQueue.main.async {
-                if let decodedData = self.decode(json: safeData, as: [T].self) {
-                    self.modelArray = decodedData
-                    completion()
-                }
+            if let decodedData = self.decode(json: safeData, as: [T].self) {
+                self.modelArray = decodedData
+                completion()
             }
+
         }
     }
     
@@ -130,17 +159,29 @@ class SGViewModel {
     }
     
     func getTableString(at index: Int) -> String {
-        if let films = modelArray as? [Films] {
-            return films[index].title ?? "Unknown movie title"
-        } else if let people = modelArray as? [People] {
-            return people[index].name ?? "Unknown person"
-        } else if let locations = modelArray as? [Locations] {
-            return locations[index].name ?? "Unknown location"
-        } else if let species = modelArray as? [Species] {
-            return species[index].name ?? "Unknown specie"
-        } else if let vehicles = modelArray as? [Vehicles] {
-            return vehicles[index].name ?? "Unknown vehicle"
+        var title = "Unknown option"
+        switch currentOption {
+        case .films:
+            if let films = modelArray as? [Films] {
+                title = films[index].title ?? "Unknown movie title"
+            }
+        case .people:
+            if let people = modelArray as? [People] {
+                title = people[index].name ?? "Unknown person"
+            }
+        case .locations:
+            if let locations = modelArray as? [Locations] {
+                title = locations[index].name ?? "Unknown location"
+            }
+        case .species:
+            if let species = modelArray as? [Species] {
+                title = species[index].name ?? "Unknown specie"
+            }
+        case .vehicles:
+            if let vehicles = modelArray as? [Vehicles] {
+                title = vehicles[index].name ?? "Unknown vehicle"
+            }
         }
-        return "Unknown option"
+        return title
     }
 }

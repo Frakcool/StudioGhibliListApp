@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3FBA77CB2220B3B900C481AD /* OptionsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBA77CA2220B3B900C481AD /* OptionsProtocol.swift */; };
+		3FBA77CD2220BBF500C481AD /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FBA77CC2220BBF500C481AD /* CoreDataService.swift */; };
 		C535000821F7A029002B4C3A /* Species+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535FFFE21F7A029002B4C3A /* Species+CoreDataClass.swift */; };
 		C535000921F7A029002B4C3A /* Species+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535FFFF21F7A029002B4C3A /* Species+CoreDataProperties.swift */; };
 		C535000A21F7A029002B4C3A /* Films+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C535000021F7A029002B4C3A /* Films+CoreDataClass.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		3FBA77CA2220B3B900C481AD /* OptionsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsProtocol.swift; sourceTree = "<group>"; };
+		3FBA77CC2220BBF500C481AD /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		C535000021F7A029002B4C3A /* Films+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Films+CoreDataClass.swift"; sourceTree = "<group>"; };
 		C535000121F7A029002B4C3A /* Films+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Films+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C535000221F7A029002B4C3A /* Locations+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Locations+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				C535FFD221F69379002B4C3A /* NetworkController.swift */,
+				3FBA77CC2220BBF500C481AD /* CoreDataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				C5751420221CE98C00E42BC7 /* DetailsViewController.swift in Sources */,
 				C535000921F7A029002B4C3A /* Species+CoreDataProperties.swift in Sources */,
 				C535FFAC21F68950002B4C3A /* ViewController.swift in Sources */,
+				3FBA77CD2220BBF500C481AD /* CoreDataService.swift in Sources */,
 				C535001121F7A029002B4C3A /* People+CoreDataProperties.swift in Sources */,
 				C535001021F7A029002B4C3A /* People+CoreDataClass.swift in Sources */,
 				C535FFD521F7879A002B4C3A /* SGViewModel.swift in Sources */,
