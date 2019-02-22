@@ -18,10 +18,14 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         tableView.register(UINib(nibName: "SGTableViewHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: "header")
         
-        vm.optionChanged(to: SGViewModel.Options.vehicles)
+        vm.optionChanged(to: SGViewModel.Options.films)
         
-        vm.getData(as: Vehicles.self) {
+        vm.getDataList(as: Films.self) {
             self.tableView.reloadData()
+        }
+        
+        vm.getIndividualData(as: Films.self, withId: "2baf70d1-42bb-4437-b551-e5fed5a87abe") {
+            print("DONE")
         }
     }
 }

@@ -15,7 +15,8 @@ class SGViewModel {
     private var fields = [String:String]()
     private var currentOption = Options.films
     
-    private var model: [Decodable]?
+    private var modelArray: [Decodable]?
+    private var model: Decodable?
     
     enum Options: String {
         case films = "/films"
@@ -47,8 +48,8 @@ class SGViewModel {
         return fields
     }
     
-    private func generateURL(_ option: Options) -> String {
-        return sgBaseURLString + option.rawValue
+    private func generateURL(_ option: Options, _ id: String? = nil) -> String {
+        return sgBaseURLString + option.rawValue + "/" + (id ?? "")
     }
     
     private func decode<T: Decodable>(json: Data, as clazz: T.Type) -> T? {
@@ -73,7 +74,35 @@ class SGViewModel {
         currentOption = option
     }
     
-    func getData<T: Decodable>(as clazz: T.Type, _ completion: @escaping () -> ()) {
+    func getIndividualData<T: Decodable>(as clazz: T.Type, withId id: String, _ completion: @escaping () -> ()) {
+        urlString = generateURL(currentOption, id)
+        
+        print(urlString)
+        
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        
+        NetworkController.performRequest(for: url, httpMethod: .get, urlParameters: fields) { (data, error) in
+            if let error = error {
+                print(error)
+            }
+            
+            guard let safeData = data else {
+                return
+            }
+            
+            DispatchQueue.main.async {
+                if let decodedData = self.decode(json: safeData, as: T.self) {
+                    self.model = decodedData
+                    print(decodedData)
+                    completion()
+                }
+            }
+        }
+    }
+    
+    func getDataList<T: Decodable>(as clazz: T.Type, _ completion: @escaping () -> ()) {
         guard let url = URL(string: urlString) else {
             return
         }
@@ -89,7 +118,7 @@ class SGViewModel {
             
             DispatchQueue.main.async {
                 if let decodedData = self.decode(json: safeData, as: [T].self) {
-                    self.model = decodedData
+                    self.modelArray = decodedData
                     completion()
                 }
             }
@@ -97,19 +126,19 @@ class SGViewModel {
     }
     
     func getModelSize() -> Int {
-        return model?.count ?? 0
+        return modelArray?.count ?? 0
     }
     
     func getTableString(at index: Int) -> String {
-        if let films = model as? [Films] {
+        if let films = modelArray as? [Films] {
             return films[index].title ?? "Unknown movie title"
-        } else if let people = model as? [People] {
+        } else if let people = modelArray as? [People] {
             return people[index].name ?? "Unknown person"
-        } else if let locations = model as? [Locations] {
+        } else if let locations = modelArray as? [Locations] {
             return locations[index].name ?? "Unknown location"
-        } else if let species = model as? [Species] {
+        } else if let species = modelArray as? [Species] {
             return species[index].name ?? "Unknown specie"
-        } else if let vehicles = model as? [Vehicles] {
+        } else if let vehicles = modelArray as? [Vehicles] {
             return vehicles[index].name ?? "Unknown vehicle"
         }
         return "Unknown option"
