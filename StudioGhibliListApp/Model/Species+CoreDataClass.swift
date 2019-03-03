@@ -34,7 +34,7 @@ public class Species: NSManagedObject, Decodable {
             id = try container.decodeIfPresent(String.self, forKey: .id)
             name = try container.decodeIfPresent(String.self, forKey: .name)
             classification = try container.decodeIfPresent(String.self, forKey: .classification)
-            eye_color = try container.decodeIfPresent(String.self, forKey: .eye_color)
+            eye_color = try container.decodeIfPresent(String.self, forKey: .eye_color) ?? "Not Available"
             hair_colors = try container.decodeIfPresent(String.self, forKey: .hair_colors)
         } catch let error {
             print(error)

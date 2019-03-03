@@ -35,7 +35,15 @@ public class Vehicles: NSManagedObject, Decodable {
             name = try container.decodeIfPresent(String.self, forKey: .name)
             vehicle_description = try container.decodeIfPresent(String.self, forKey: .vehicle_description)
             vehicle_class = try container.decodeIfPresent(String.self, forKey: .vehicle_class)
-            length = try container.decodeIfPresent(String.self, forKey: .length)
+            if let strLength = try container.decodeIfPresent(String.self, forKey: .length) {
+                length = strLength
+            }
+            else if let intLength = try container.decodeIfPresent(Int.self, forKey: .length) {
+                length = String(intLength)
+            }
+            else {
+                length = "Not Available" // default value
+            }
         } catch let error {
             print(error)
             throw error

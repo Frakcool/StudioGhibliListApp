@@ -42,7 +42,7 @@ class SGViewModel {
     private var updateUI: (()->Void)?
     
     private var modelArray: [Decodable]?
-    private var model: Decodable? // this does not seem to be in use
+    private var model: Decodable?
     
     enum Options: String {
         case films = "/films"
@@ -56,6 +56,10 @@ class SGViewModel {
     
     init(_ updateUI: (()->Void)?) {
         self.updateUI = updateUI
+    }
+    
+    func getCurrentOption() -> Options {
+        return currentOption
     }
     
     private func getFieldsToReturn(_ option: Options) -> String {
@@ -106,7 +110,7 @@ class SGViewModel {
         currentOption = option
     }
     
-    func getIndividualData<T: Decodable>(as clazz: T.Type, withId id: String, _ completion: @escaping () -> ()) {
+    func getIndividualData<T: Decodable>(as clazz: T.Type, withId id: String, _ completion: @escaping (T) -> ()) {
         urlString = generateURL(currentOption, id)
         
         print(urlString)
@@ -127,7 +131,7 @@ class SGViewModel {
             if let decodedData = self.decode(json: safeData, as: T.self) {
                 self.model = decodedData
                 print(decodedData)
-                completion()
+                completion(decodedData)
             }
         }
     }
@@ -156,6 +160,33 @@ class SGViewModel {
     
     func getModelSize() -> Int {
         return modelArray?.count ?? 0
+    }
+    
+    func getId(at index: Int) -> String {
+        var id = ""
+        switch currentOption {
+        case .films:
+            if let films = modelArray as? [Films] {
+                id = films[index].id ?? "Unknown movie title"
+            }
+        case .people:
+            if let people = modelArray as? [People] {
+                id = people[index].id ?? "Unknown person"
+            }
+        case .locations:
+            if let locations = modelArray as? [Locations] {
+                id = locations[index].id ?? "Unknown location"
+            }
+        case .species:
+            if let species = modelArray as? [Species] {
+                id = species[index].id ?? "Unknown specie"
+            }
+        case .vehicles:
+            if let vehicles = modelArray as? [Vehicles] {
+                id = vehicles[index].id ?? "Unknown vehicle"
+            }
+        }
+        return id
     }
     
     func getTableString(at index: Int) -> String {

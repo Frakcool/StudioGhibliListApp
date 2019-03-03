@@ -24,10 +24,6 @@ class ViewController: UIViewController {
         })
         
         vm.optionChanged(to: SGViewModel.Options.films)
-        
-        vm.getIndividualData(as: Films.self, withId: "2baf70d1-42bb-4437-b551-e5fed5a87abe") {
-            print("DONE")
-        }
     }
 }
 
@@ -51,6 +47,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
         header.delegate = self
         return header
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailsVC = DetailsViewController()
+        detailsVC.id = vm.getId(at: indexPath.row)
+        detailsVC.option = vm.getCurrentOption()
+        self.navigationController?.pushViewController(detailsVC, animated: true)
     }
 }
 
