@@ -14,6 +14,7 @@ class DetailsViewController: UIViewController {
     let vm = SGViewModel()
     var option = SGViewModel.Options.films
     var id = ""
+    var subViews = [UILabel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,12 @@ class DetailsViewController: UIViewController {
         attributedText.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.purple, range: NSRange(location: from, length: to))
         
         return attributedText
+    }
+    
+    func addSubviewsToStackView(labels: [UILabel]) {
+        for label in labels {
+            self.stackView.addArrangedSubview(label)
+        }
     }
     
     func setupUI() {
@@ -63,12 +70,8 @@ class DetailsViewController: UIViewController {
                     releaseDateLabel.attributedText = self.getAttributedTextFor(string: "Release Date: " + film.release_date!, from: 0, to: 14)
                     rtScoreLabel.attributedText = self.getAttributedTextFor(string: "Rotten Tomatoes: " + film.rt_score!, from: 0, to: 17)
                     
-                    self.stackView.addArrangedSubview(titleLabel)
-                    self.stackView.addArrangedSubview(descriptionLabel)
-                    self.stackView.addArrangedSubview(directorLabel)
-                    self.stackView.addArrangedSubview(producerLabel)
-                    self.stackView.addArrangedSubview(releaseDateLabel)
-                    self.stackView.addArrangedSubview(rtScoreLabel)
+                    self.subViews = [titleLabel, descriptionLabel, directorLabel, producerLabel, releaseDateLabel, rtScoreLabel]
+                    self.addSubviewsToStackView(labels: self.subViews)
                 }
             }
             break
@@ -83,9 +86,8 @@ class DetailsViewController: UIViewController {
                     genderLabel.attributedText = self.getAttributedTextFor(string: "Gender: " + people.gender!, from: 0, to: 8)
                     ageLabel.attributedText = self.getAttributedTextFor(string: "Age: " + people.age!, from: 0, to: 5)
                     
-                    self.stackView.addArrangedSubview(nameLabel)
-                    self.stackView.addArrangedSubview(genderLabel)
-                    self.stackView.addArrangedSubview(ageLabel)
+                    self.subViews = [nameLabel, genderLabel, ageLabel]
+                    self.addSubviewsToStackView(labels: self.subViews)
                 }
             }
             break
@@ -102,10 +104,8 @@ class DetailsViewController: UIViewController {
                     terrainLabel.attributedText = self.getAttributedTextFor(string: "Terrain: " + location.terrain!, from: 0, to: 9)
                     surfaceWaterLabel.attributedText = self.getAttributedTextFor(string: "Surface Water: " + location.surface_water!, from: 0, to: 15)
                     
-                    self.stackView.addArrangedSubview(nameLabel)
-                    self.stackView.addArrangedSubview(climateLabel)
-                    self.stackView.addArrangedSubview(terrainLabel)
-                    self.stackView.addArrangedSubview(surfaceWaterLabel)
+                    self.subViews = [nameLabel, climateLabel, terrainLabel, surfaceWaterLabel]
+                    self.addSubviewsToStackView(labels: self.subViews)
                 }
             }
             break
@@ -124,10 +124,8 @@ class DetailsViewController: UIViewController {
                     
                     hairColorLabel.numberOfLines = 0
                     
-                    self.stackView.addArrangedSubview(nameLabel)
-                    self.stackView.addArrangedSubview(classificationLabel)
-                    self.stackView.addArrangedSubview(eyeColorLabel)
-                    self.stackView.addArrangedSubview(hairColorLabel)
+                    self.subViews = [nameLabel, classificationLabel, eyeColorLabel, hairColorLabel]
+                    self.addSubviewsToStackView(labels: self.subViews)
                 }
             }
             break
@@ -146,10 +144,8 @@ class DetailsViewController: UIViewController {
                     
                     descriptionLabel.numberOfLines = 0
                     
-                    self.stackView.addArrangedSubview(nameLabel)
-                    self.stackView.addArrangedSubview(descriptionLabel)
-                    self.stackView.addArrangedSubview(classLabel)
-                    self.stackView.addArrangedSubview(lengthLabel)
+                    self.subViews = [nameLabel, descriptionLabel, classLabel, lengthLabel]
+                    self.addSubviewsToStackView(labels: self.subViews)
                 }
             }
             break
