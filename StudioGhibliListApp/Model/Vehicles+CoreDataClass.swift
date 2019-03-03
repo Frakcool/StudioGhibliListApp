@@ -35,10 +35,12 @@ public class Vehicles: NSManagedObject, Decodable {
             name = try container.decodeIfPresent(String.self, forKey: .name)
             vehicle_description = try container.decodeIfPresent(String.self, forKey: .vehicle_description)
             vehicle_class = try container.decodeIfPresent(String.self, forKey: .vehicle_class)
-            if let strLength = try container.decodeIfPresent(String.self, forKey: .length) {
+            if let str = try? container.decodeIfPresent(String.self, forKey: .length),
+                let strLength = str {
                 length = strLength
             }
-            else if let intLength = try container.decodeIfPresent(Int.self, forKey: .length) {
+            else if let int = try? container.decodeIfPresent(Int.self, forKey: .length),
+                let intLength = int {
                 length = String(intLength)
             }
             else {
